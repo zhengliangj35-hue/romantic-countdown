@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>等一场温柔的相见</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{min-height:100%;background:#17172c}
+    body{min-height:100vh;min-height:100svh;background:radial-gradient(circle at 20% 20%,rgba(255,190,220,.18),transparent 28%),radial-gradient(circle at 80% 10%,rgba(210,190,255,.16),transparent 30%),linear-gradient(180deg,#17172c 0%,#242447 48%,#38264f 100%);display:flex;align-items:flex-start;justify-content:center;font-family:"Microsoft Yahei","PingFang SC",sans-serif;color:#f8f1f8;padding:clamp(18px,4vw,42px) 20px 92px;overflow-x:hidden;overflow-y:auto;position:relative}
+    .moon-glow{position:fixed;top:8%;right:12%;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,239,218,.85),rgba(255,239,218,.18),transparent 70%);opacity:.75;z-index:1}
+    .card{max-width:560px;width:100%;margin:auto 0;background:rgba(255,255,255,.08);border-radius:24px;padding:clamp(30px,4vw,45px) clamp(24px,4vw,38px);backdrop-filter:blur(10px);border:1px solid rgba(255,220,235,.22);box-shadow:0 20px 60px rgba(0,0,0,.28),0 0 36px rgba(255,170,210,.12);z-index:10;position:relative;overflow:hidden}
+    .card:before{content:"";position:absolute;inset:-1px;background:linear-gradient(135deg,rgba(255,198,225,.16),transparent 42%,rgba(210,190,255,.12));pointer-events:none}
+    .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 3s infinite ease-in-out;z-index:2}
+    @keyframes twinkle{0%,100%{opacity:.18;transform:scale(1)}50%{opacity:.95;transform:scale(1.5)}}
+    h2{text-align:center;letter-spacing:2px;margin-bottom:clamp(16px,3vh,22px);color:#ffe8f3;font-size:clamp(21px,3.6vw,26px);font-weight:500;position:relative;z-index:2}
+    .countdown-box{text-align:center;font-size:clamp(15px,2.8vw,18px);padding:clamp(14px,3vw,17px);background:rgba(255,220,238,.09);border-radius:16px;margin-bottom:clamp(22px,4vh,30px);letter-spacing:1px;border:1px solid rgba(255,220,238,.12);position:relative;z-index:2}
+    .time-num{font-size:clamp(24px,5.2vw,30px);color:#ffd6ea;font-weight:bold;margin-top:6px;text-shadow:0 0 12px rgba(255,180,220,.35)}
+    .near-text{margin-top:8px;font-size:15px;color:#ffe8f3;opacity:0;transform:translateY(4px);transition:.5s}.near-text.show{opacity:1;transform:translateY(0)}
+    .text-content{line-height:1.95;font-size:clamp(14px,2.8vw,16px);letter-spacing:1px;position:relative;z-index:2}.text-content p{opacity:.94}
+    .text-content br{display:block;content:"";margin-top:clamp(8px,2vh,14px)}
+    .divider{height:1px;width:62%;margin:clamp(22px,4vh,30px) auto;background:linear-gradient(90deg,transparent,#ffd6ea,transparent);position:relative;z-index:2}
+    .tip{margin-top:clamp(16px,3vh,22px);font-size:clamp(13px,2.6vw,14px);line-height:1.7;opacity:.78;text-align:center;position:relative;z-index:2}.flower-mark{text-align:center;font-size:28px;margin-top:16px;color:#ffd6ea;animation:softBeat 1.8s infinite;position:relative;z-index:2}
+    @keyframes softBeat{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.08);opacity:1}}
+    .petal,.burst-petal{position:fixed;width:16px;height:22px;background:radial-gradient(circle at 35% 30%,#fff1f7 0%,#ffd2e4 42%,#eeb0cc 100%);border-radius:70% 30% 70% 30%;opacity:.78;z-index:5;pointer-events:none;filter:drop-shadow(0 0 4px rgba(255,190,220,.22))}.petal:after,.burst-petal:after{content:"";position:absolute;width:45%;height:45%;left:24%;top:24%;background:rgba(255,255,255,.26);border-radius:50%;filter:blur(2px)}
+    .petal{top:-60px;animation-name:petalFall;animation-timing-function:linear;animation-iteration-count:1}@keyframes petalFall{0%{transform:translate3d(0,-20px,0) rotate(0deg);opacity:0}10%{opacity:.82}45%{transform:translate3d(var(--drift-mid),45vh,0) rotate(180deg)}100%{transform:translate3d(var(--drift-end),105vh,0) rotate(420deg);opacity:0}}
+    .burst-petal{left:var(--x);top:var(--y);animation:petalBurst .9s ease-out forwards}@keyframes petalBurst{0%{transform:translate(-50%,-50%) scale(.4) rotate(0deg);opacity:.9}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.05) rotate(var(--rot));opacity:0}}
+    .mask{display:none;position:fixed;inset:0;background:rgba(12,10,22,.68);z-index:99;align-items:center;justify-content:center;padding:24px}.meet-alert{max-width:360px;width:100%;background:linear-gradient(180deg,#3b2b58,#2a2548);padding:38px 28px;border-radius:22px;text-align:center;font-size:18px;color:#fff4fa;border:1px solid rgba(255,218,235,.26);box-shadow:0 20px 60px rgba(0,0,0,.35)}.big-flower{font-size:38px;margin-bottom:16px}.music-tip{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);min-height:42px;padding:0 18px;border:1px solid rgba(255,220,238,.24);border-radius:999px;background:rgba(36,30,58,.72);backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.24);font-size:13px;color:rgba(255,244,250,.88);z-index:20;letter-spacing:1px;text-align:center;cursor:pointer}
+    .music-tip.playing{color:#ffd6ea;border-color:rgba(255,214,234,.46)}
+    @media(max-width:560px){body{padding:14px 12px 78px}.card{border-radius:20px;padding:28px 20px}.text-content{line-height:1.82;letter-spacing:.5px}.divider{width:72%}.moon-glow{width:90px;height:90px;right:8%;top:5%}.music-tip{width:calc(100% - 32px);bottom:12px}}
+    @media(max-height:740px) and (min-width:561px){body{padding-top:24px;padding-bottom:86px}.card{margin:0}.text-content{line-height:1.82}.divider{margin:20px auto}.flower-mark{margin-top:12px}}
+  </style>
+</head>
+<body>
+  <div class="moon-glow"></div>
+  <audio id="bgMusic" loop preload="auto"><source src="./Luv Letter - DJ Okawari.mp3" type="audio/mpeg" /></audio>
+  <div class="mask" id="popMask"><div class="meet-alert"><div class="big-flower">❀</div><div>约定的时刻已经抵达</div><div style="margin-top:10px;">愿今晚的风，也温柔地把我们送向彼此</div></div></div>
+  <div class="card">
+    <h2>等一场温柔的相见</h2>
+    <div class="countdown-box"><div>距离周五晚上八点相见</div><div class="time-num"><span id="hour">00</span> : <span id="minute">00</span> : <span id="second">00</span></div><div class="near-text" id="nearText">快要见到你了</div></div>
+    <div class="text-content" id="letterText"><p>我把期待放得很轻，</p><p>像夜色里慢慢落下的一片花瓣，</p><p>不惊扰你，只悄悄靠近。</p><br/><p>工作日被一点点走完，</p><p>心里的惦念却没有因此变淡。</p><p>它只是安静地停在那里，</p><p>等一个可以见到你的晚上。</p><br/><p>我知道最好的相处，</p><p>不是把情绪变得很重，</p><p>而是让喜欢变得温柔、自然、没有负担。</p><br/><p>所以周五见面这件事，</p><p>我不想说得太满，</p><p>只是很认真地，期待见你。</p></div>
+    <div class="divider"></div><div class="tip">慢慢靠近，轻轻期待，把相见留给刚刚好的夜晚</div><div class="flower-mark">❀</div>
+  </div>
+  <button class="music-tip" id="musicTip" type="button">开启音乐</button>
+  <script>
+    for(let i=0;i<120;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';document.body.appendChild(s)}
+    const bgMusic=document.getElementById('bgMusic');const musicTip=document.getElementById('musicTip');const musicSrc='./Luv Letter - DJ Okawari.mp3';let audioPlayed=false;let audioCtx;let masterGain;let masterConnected=false;let fallbackTimer;let audioFileReady=false;fetch(musicSrc,{method:'HEAD',cache:'no-store'}).then(r=>{audioFileReady=r.ok}).catch(()=>{audioFileReady=false});async function startFallbackMusic(){if(audioPlayed)return;audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')await audioCtx.resume();masterGain=masterGain||audioCtx.createGain();masterGain.gain.value=.16;if(!masterConnected){masterGain.connect(audioCtx.destination);masterConnected=true}const notes=[261.63,329.63,392,523.25,659.25,783.99];function playTone(){const now=audioCtx.currentTime;const freq=notes[Math.floor(Math.random()*notes.length)];const osc=audioCtx.createOscillator();const gain=audioCtx.createGain();osc.type='sine';osc.frequency.setValueAtTime(freq,now);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.7,now+.08);gain.gain.exponentialRampToValueAtTime(.0001,now+2.2);osc.connect(gain);gain.connect(masterGain);osc.start(now);osc.stop(now+2.25)}playTone();fallbackTimer=setInterval(playTone,1200);audioPlayed=true;musicTip.textContent='音乐播放中';musicTip.classList.add('playing')}function withTimeout(promise,ms){return Promise.race([promise,new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),ms))])}async function startMusic(){if(audioPlayed)return;musicTip.textContent='正在开启音乐...';if(audioFileReady){try{bgMusic.volume=.8;await withTimeout(bgMusic.play(),1200);audioPlayed=true;musicTip.textContent='音乐播放中';musicTip.classList.add('playing');return}catch(error){}}await startFallbackMusic()}musicTip.addEventListener('click',e=>{e.stopPropagation();startMusic()});document.body.addEventListener('click',e=>{createPetalBurst(e.clientX,e.clientY);startMusic()});
+    function createPetal(){const p=document.createElement('div');p.className='petal';const size=Math.random()*10+10;const duration=Math.random()*5+6;const delay=Math.random()*.4;p.style.left=Math.random()*100+'%';p.style.width=size+'px';p.style.height=size*1.35+'px';p.style.animationDuration=duration+'s';p.style.animationDelay=delay+'s';p.style.setProperty('--drift-mid',(Math.random()*120-60)+'px');p.style.setProperty('--drift-end',(Math.random()*180-90)+'px');p.style.opacity=Math.random()*.35+.5;document.body.appendChild(p);setTimeout(()=>p.remove(),(duration+delay)*1000+300)}
+    function createPetalBurst(x,y){for(let i=0;i<14;i++){const p=document.createElement('div');p.className='burst-petal';const angle=Math.PI*2*i/14;const distance=45+Math.random()*38;p.style.setProperty('--x',x+'px');p.style.setProperty('--y',y+'px');p.style.setProperty('--dx',Math.cos(angle)*distance+'px');p.style.setProperty('--dy',Math.sin(angle)*distance+'px');p.style.setProperty('--rot',(Math.random()*260+120)+'deg');const size=Math.random()*8+9;p.style.width=size+'px';p.style.height=size*1.35+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),950)}}
+    setInterval(createPetal,280);
+    let meetTrigger=false;function getCountDown(){const now=new Date();const target=new Date();const day=now.getDay();const diffDay=(5-day+7)%7;target.setDate(now.getDate()+diffDay);target.setHours(20,0,0,0);const remainMs=target-now;if(remainMs<=0)return{h:0,m:0,s:0,arrive:true,remainMs:0};const h=Math.floor(remainMs/(1000*60*60));const m=Math.floor((remainMs%(1000*60*60))/(1000*60));const s=Math.floor((remainMs%(1000*60))/1000);return{h,m,s,arrive:false,remainMs}}
+    function renderCountDown(){const t=getCountDown();document.getElementById('hour').innerText=String(t.h).padStart(2,'0');document.getElementById('minute').innerText=String(t.m).padStart(2,'0');document.getElementById('second').innerText=String(t.s).padStart(2,'0');document.getElementById('nearText').classList.toggle('show',t.remainMs>0&&t.remainMs<=60*60*1000);if(t.arrive&&!meetTrigger){meetTrigger=true;document.getElementById('popMask').style.display='flex'}}
+    setInterval(renderCountDown,1000);renderCountDown();
+  </script>
+</body>
+</html>
