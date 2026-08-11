@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Cache-Control" content="no-store" />
   <meta http-equiv="Pragma" content="no-cache" />
-  <title>等一场温柔的相见</title>
+  <title>想念你的时长</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html{min-height:100%;background:#17172c}
@@ -19,6 +19,7 @@
     .countdown-box{text-align:center;font-size:clamp(15px,2.8vw,18px);padding:clamp(14px,3vw,17px);background:rgba(255,220,238,.09);border-radius:16px;margin-bottom:clamp(22px,4vh,30px);letter-spacing:1px;border:1px solid rgba(255,220,238,.12);position:relative;z-index:2}
     .time-num{font-size:clamp(24px,5.2vw,30px);color:#ffd6ea;font-weight:bold;margin-top:6px;text-shadow:0 0 12px rgba(255,180,220,.35)}
     .near-text{margin-top:8px;font-size:15px;color:#ffe8f3;opacity:0;transform:translateY(4px);transition:.5s}.near-text.show{opacity:1;transform:translateY(0)}
+    .miss-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}.miss-chips span{padding:6px 10px;border:1px solid rgba(255,220,238,.18);border-radius:999px;background:rgba(255,255,255,.06);font-size:12px;color:rgba(255,239,247,.82)}
     .text-content{line-height:1.95;font-size:clamp(14px,2.8vw,16px);letter-spacing:1px;position:relative;z-index:2}.text-content p{opacity:.94}
     .text-content br{display:block;content:"";margin-top:clamp(8px,2vh,14px)}
     .divider{height:1px;width:62%;margin:clamp(22px,4vh,30px) auto;background:linear-gradient(90deg,transparent,#ffd6ea,transparent);position:relative;z-index:2}
@@ -27,21 +28,24 @@
     .petal,.burst-petal{position:fixed;width:16px;height:22px;background:radial-gradient(circle at 35% 30%,#fff1f7 0%,#ffd2e4 42%,#eeb0cc 100%);border-radius:70% 30% 70% 30%;opacity:.78;z-index:5;pointer-events:none;filter:drop-shadow(0 0 4px rgba(255,190,220,.22))}.petal:after,.burst-petal:after{content:"";position:absolute;width:45%;height:45%;left:24%;top:24%;background:rgba(255,255,255,.26);border-radius:50%;filter:blur(2px)}
     .petal{top:-60px;animation-name:petalFall;animation-timing-function:linear;animation-iteration-count:1}@keyframes petalFall{0%{transform:translate3d(0,-20px,0) rotate(0deg);opacity:0}10%{opacity:.82}45%{transform:translate3d(var(--drift-mid),45vh,0) rotate(180deg)}100%{transform:translate3d(var(--drift-end),105vh,0) rotate(420deg);opacity:0}}
     .burst-petal{left:var(--x);top:var(--y);animation:petalBurst .9s ease-out forwards}@keyframes petalBurst{0%{transform:translate(-50%,-50%) scale(.4) rotate(0deg);opacity:.9}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.05) rotate(var(--rot));opacity:0}}
+    .whisper{position:fixed;z-index:3;color:rgba(255,226,239,.2);font-size:clamp(32px,7vw,72px);font-family:"KaiTi","STKaiti",serif;letter-spacing:8px;pointer-events:none;animation:whisperFloat 7s ease-in-out infinite}.whisper.left{left:5%;top:16%}.whisper.right{right:4%;bottom:18%;animation-delay:2.2s}@keyframes whisperFloat{0%,100%{transform:translateY(0);opacity:.14}50%{transform:translateY(-14px);opacity:.26}}
     .mask{display:none;position:fixed;inset:0;background:rgba(12,10,22,.68);z-index:99;align-items:center;justify-content:center;padding:24px}.meet-alert{max-width:360px;width:100%;background:linear-gradient(180deg,#3b2b58,#2a2548);padding:38px 28px;border-radius:22px;text-align:center;font-size:18px;color:#fff4fa;border:1px solid rgba(255,218,235,.26);box-shadow:0 20px 60px rgba(0,0,0,.35)}.big-flower{font-size:38px;margin-bottom:16px}.music-tip{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);min-height:42px;padding:0 18px;border:1px solid rgba(255,220,238,.24);border-radius:999px;background:rgba(36,30,58,.72);backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.24);font-size:13px;color:rgba(255,244,250,.88);z-index:20;letter-spacing:1px;text-align:center;cursor:pointer}
     .music-tip.playing{color:#ffd6ea;border-color:rgba(255,214,234,.46)}
-    @media(max-width:560px){body{padding:14px 12px 78px}.card{border-radius:20px;padding:28px 20px}.text-content{line-height:1.82;letter-spacing:.5px}.divider{width:72%}.moon-glow{width:90px;height:90px;right:8%;top:5%}.music-tip{width:calc(100% - 32px);bottom:12px}}
+    @media(max-width:560px){body{padding:14px 12px 78px}.card{border-radius:20px;padding:28px 20px}.text-content{line-height:1.82;letter-spacing:.5px}.divider{width:72%}.moon-glow{width:90px;height:90px;right:8%;top:5%}.music-tip{width:calc(100% - 32px);bottom:12px}.whisper{display:none}.miss-chips span{font-size:11px;padding:5px 8px}}
     @media(max-height:740px) and (min-width:561px){body{padding-top:24px;padding-bottom:86px}.card{margin:0}.text-content{line-height:1.82}.divider{margin:20px auto}.flower-mark{margin-top:12px}}
   </style>
 </head>
 <body>
   <div class="moon-glow"></div>
+  <div class="whisper left">想你</div>
+  <div class="whisper right">靠近</div>
   <audio id="bgMusic" loop preload="auto"><source src="./Luv Letter - DJ Okawari.mp3" type="audio/mpeg" /></audio>
   <div class="mask" id="popMask"><div class="meet-alert"><div class="big-flower">❀</div><div>约定的时刻已经抵达</div><div style="margin-top:10px;">愿今晚的风，也温柔地把我们送向彼此</div></div></div>
   <div class="card">
-    <h2>等一场温柔的相见</h2>
-    <div class="countdown-box"><div>从八月七号晚上八点起，已经过去</div><div class="time-num"><span id="day">00</span> 天 <span id="hour">00</span> : <span id="minute">00</span> : <span id="second">00</span></div><div class="near-text show" id="nearText">从那一刻开始，时间也有了温度</div></div>
-    <div class="text-content" id="letterText"><p>我把期待放得很轻，</p><p>像夜色里慢慢落下的一片花瓣，</p><p>不惊扰你，只悄悄靠近。</p><br/><p>工作日被一点点走完，</p><p>心里的惦念却没有因此变淡。</p><p>它只是安静地停在那里，</p><p>等一个可以见到你的晚上。</p><br/><p>我知道最好的相处，</p><p>不是把情绪变得很重，</p><p>而是让喜欢变得温柔、自然、没有负担。</p><br/><p>所以周五见面这件事，</p><p>我不想说得太满，</p><p>只是很认真地，期待见你。</p></div>
-    <div class="divider"></div><div class="tip">慢慢靠近，轻轻期待，把相见留给刚刚好的夜晚</div><div class="flower-mark">❀</div>
+    <h2>想念正在慢慢发光</h2>
+    <div class="countdown-box"><div>2026 年 8 月 7 日 20:00，我想念你的时长有多少</div><div class="time-num"><span id="day">00</span> 天 <span id="hour">00</span> : <span id="minute">00</span> : <span id="second">00</span></div><div class="near-text show" id="nearText">每一秒，都在偷偷偏向你</div><div class="miss-chips"><span>月光替我记着</span><span>晚风替我递信</span><span>心跳替我靠近</span></div></div>
+    <div class="text-content" id="letterText"><p>我把想你藏进每一个不经意，</p><p>藏在抬头看见月亮的瞬间，</p><p>也藏在手机亮起前，那一点点期待里。</p><br/><p>时间走得很轻，</p><p>可想念偏偏有声音。</p><p>它像夜色里贴近耳边的风，</p><p>不明说，却总把心事吹向你。</p><br/><p>我喜欢这种刚刚好的暧昧，</p><p>不催促，不占有，</p><p>只是让每一次心动，都温柔地有迹可循。</p><br/><p>从那个晚上开始，</p><p>我没有认真计算时间，</p><p>只是很诚实地，越来越想你。</p></div>
+    <div class="divider"></div><div class="tip">如果想念有形状，大概是月光落在你名字上的样子</div><div class="flower-mark">♡</div>
   </div>
   <button class="music-tip" id="musicTip" type="button">开启音乐</button>
   <script>
